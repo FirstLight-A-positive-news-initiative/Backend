@@ -22,10 +22,17 @@ const userSchema = new mongoose.Schema({
     positivity: {
         type: Number,
         required: true,
+        min: 0,
+        max: 100,
     },
     genre: {
         type: [String],
         required: true,
+        validate(value) {
+            if (value.length < 2) {
+                throw new Error("Genre length should be greater than 2");
+            }
+        },
     },
 });
 
