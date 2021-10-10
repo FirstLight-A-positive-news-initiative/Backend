@@ -14,7 +14,7 @@ FirstLight is an application that aims to provide people with positive news to m
 
 ```
 
-git clone git@github.com:TiTa-Classroom-Management-System/TiTa-Backend.git
+git clone git@github.com:FirstLight-A-positive-news-initiative/Backend.git
 
 ```
 
