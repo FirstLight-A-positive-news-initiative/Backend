@@ -9,8 +9,20 @@ const getUser = async (req, res, next) => {
         }
         res.send(user);
     } catch (e) {
-        res.status(400).send();
+        res.status(500).send(e);
     }
 };
 
-module.exports = { getUser };
+const postUser = async (req, res, next) => {
+    try {
+        const user = await User.insertOne([req.body]);
+        if (!user) {
+            throw new Error("User not inserted");
+        }
+        res.send(user);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+};
+
+module.exports = { getUser, postUser };
