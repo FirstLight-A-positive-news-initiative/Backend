@@ -4,5 +4,11 @@ mongoose.connect(
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+    }, (err) => {
+        if(err) {
+            throw new Error("Failed to connect to cluster.");
+        } else {
+            console.log("Connected to cluster.");
+        }
     }
 );
