@@ -15,12 +15,14 @@ const getUser = async (req, res, next) => {
 
 const postUser = async (req, res, next) => {
     try {
-        const user = await User.insertOne([req.body]);
+        const user = await User.create([req.body]);
+        console.log(user);
         if (!user) {
             throw new Error("User not inserted");
         }
         res.send(user);
     } catch (e) {
+        console.log(e);
         res.status(500).send(e);
     }
 };
