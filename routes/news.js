@@ -1,10 +1,11 @@
 var express = require("express");
-const { getNews, postNews } = require("../controllers/news");
+const { getNews, listNews, postNews } = require("../controllers/news");
 
 var router = express.Router();
 
-/* GET users listing. */
-router.get("/search/:search_query", getNews);
+/* GET news listing. */
+router.get("/list/:genres/:skip", listNews);
+router.get("/search/:searchQuery", getNews);
 router.post("/post", postNews);
 
 module.exports = router;

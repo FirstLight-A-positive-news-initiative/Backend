@@ -2,7 +2,7 @@ const News = require("../models/news");
 
 const getNews = async (req, res, next) => {
 
-    const search_query = req.params["search_query"];
+    const search_query = req.params["searchQuery"];
     try {
         const news = await News.find(
             {
@@ -17,6 +17,22 @@ const getNews = async (req, res, next) => {
         res.status(500).send(e);
     }
 };
+
+const listNews = async (req, res, next) => {
+    let { genres, skip } = req.params;
+    const genre_list = genres.split(",");
+
+    try {
+        const news = await News.find({genre: {$in: genre_list}}, ["title", "link", "image_link", "summary", "positivity_score", "date", "genre"], { sort: "-date", skip: Number(skip), limit: 10 });
+        if(news) {
+            res.send(news);
+        } else {
+            res.status(500).send("No news to show.");
+        }
+    } catch(err) {
+        console.log(err);
+    }
+}
 
 const postNews = async (req, res, next) => {
 
@@ -33,4 +49,4 @@ const postNews = async (req, res, next) => {
 };
 
 
-module.exports = { getNews, postNews };
+module.exports = { getNews, postNews, listNews };
