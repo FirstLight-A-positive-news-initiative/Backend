@@ -13,7 +13,7 @@ const getComics = async(req, res, next)=>{
     const page = req.query.page;
     if(name=="home"){
         try{
-            const comics = await Comics.find({}, ["name", "link", "date", "source"], { sort: "-date", skip: Number(page), limit: 10 });
+            const comics = await Comics.find({}, ["name", "link", "date", "source"], { sort: "-date", skip: Number(page), limit: 12 });
             if(!comics){
                 throw new Error("No matching Comic names found");
             }

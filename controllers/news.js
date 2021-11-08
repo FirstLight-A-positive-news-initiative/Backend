@@ -23,7 +23,7 @@ const listNews = async (req, res, next) => {
     const genre_list = genres.split(",");
 
     try {
-        const news = await News.find({genre: {$in: genre_list}, positivity_score: {$gte: positivity}}, ["title", "link", "image_link", "summary", "positivity_score", "date", "genre"], { sort: "-date", skip: Number(skip), limit: 10 });
+        const news = await News.find({genre: {$in: genre_list}, positivity_score: {$gte: positivity}}, ["title", "link", "image_link", "summary", "positivity_score", "date", "genre"], { sort: "-date", skip: Number(skip), limit: 12 });
         if(news) {
             res.send(news);
         } else {
