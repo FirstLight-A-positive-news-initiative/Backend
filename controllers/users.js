@@ -27,4 +27,28 @@ const postUser = async (req, res, next) => {
     }
 };
 
-module.exports = { getUser, postUser };
+const updatePreferences = async (req, res) => {
+    const { id, genre, positivity } = req.body;
+
+    try {
+        const user = await User.findByIdAndUpdate(
+            { _id: id }, {
+            positivity,
+            genre
+        })
+        
+        if (user) {
+            res.status(200).send(user);
+        } else {
+            res.status(500).json(
+                {
+                    message: "Unable to update."
+                }
+            )
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
+}
+
+module.exports = { getUser, postUser, updatePreferences };
