@@ -3,7 +3,6 @@ const Comics = require("../models/comics");
 const namemap = (name)=>{
     if(name=="dilbert") return "Dilbert";
     else if(name=="garfield") return "Garfield";
-    else if(name=="b.c.") return "B.C.";
     else if(name=="calvinandhobbes") return "Calvin and Hobbes";
     else if(name=="peanuts") return "Peanuts";
     else if(name=="dennis") return "Dennis the Menace";
