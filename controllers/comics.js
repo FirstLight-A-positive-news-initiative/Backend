@@ -5,7 +5,8 @@ const namemap = (name)=>{
     else if(name=="garfield") return "Garfield";
     else if(name=="calvinandhobbes") return "Calvin and Hobbes";
     else if(name=="peanuts") return "Peanuts";
-    else if(name=="dennis") return "Dennis the Menace";
+    else if(name=="bignate") return "Big Nate";
+    else if(name=="luann") return "Luann";
 }
 
 const getComics = async(req, res, next)=>{
