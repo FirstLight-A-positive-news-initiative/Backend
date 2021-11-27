@@ -25,7 +25,7 @@ const getComics = async(req, res, next)=>{
     } else{
         try{
             name=namemap(name);
-            const comics = await Comics.find({name: name},  ["name", "link", "date", "source"], { sort: "-date", skip: 12 * Number(page), limit: 10 });
+            const comics = await Comics.find({name: name},  ["name", "link", "date", "source"], { sort: "-date", skip: 12 * Number(page), limit: 12 });
             if(!comics){
                 throw new Error("No matching Comic names found");
             }
