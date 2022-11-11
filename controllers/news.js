@@ -1,10 +1,10 @@
 const News = require("../models/news");
-const redisClient = require("../db/redis");
+// const redisClient = require("../db/redis");
 
 const getNewsById = async (req, res, next) => {
     try {
         const news = await News.findById(req.params["id"]);
-        redisClient.set("id" + req.params["id"], JSON.stringify(news));
+        // redisClient.set("id" + req.params["id"], JSON.stringify(news));
         res.send(news);
     } catch (e) {
         res.status(500).send(e);
@@ -20,7 +20,7 @@ const getNews = async (req, res, next) => {
         if (!news) {
             throw new Error("No matching news found");
         }
-        redisClient.setex("search" + search_query, 3600, JSON.stringify(news));
+        // redisClient.setex("search" + search_query, 3600, JSON.stringify(news));
         res.send(news);
     } catch (e) {
         res.status(500).send(e);
@@ -49,11 +49,11 @@ const listNews = async (req, res, next) => {
             { sort: "-date", skip: Number(skip), limit: 12 }
         );
         if (news) {
-            redisClient.setex(
-                genres + positivity + skip,
-                900,
-                JSON.stringify(news)
-            );
+            // redisClient.setex(
+            //     genres + positivity + skip,
+            //     900,
+            //     JSON.stringify(news)
+            // );
             res.send(news);
         } else {
             res.status(500).send("No news to show.");

@@ -1,5 +1,5 @@
 const Comics = require("../models/comics");
-const redisClient = require("../db/redis");
+// const redisClient = require("../db/redis");
 
 const namemap = (name) => {
     if (name == "dilbert") return "Dilbert";
@@ -23,11 +23,11 @@ const getComics = async (req, res, next) => {
             if (!comics) {
                 throw new Error("No matching Comic names found");
             }
-            redisClient.setex(
-                "comics" + name + page,
-                3600,
-                JSON.stringify(comics)
-            );
+            // redisClient.setex(
+            //     "comics" + name + page,
+            //     3600,
+            //     JSON.stringify(comics)
+            // );
             res.send(comics);
         } catch (e) {
             res.status(500).send(e);
@@ -43,11 +43,11 @@ const getComics = async (req, res, next) => {
             if (!comics) {
                 throw new Error("No matching Comic names found");
             }
-            redisClient.setex(
-                "comics" + name + page,
-                3600,
-                JSON.stringify(comics)
-            );
+            // redisClient.setex(
+            //     "comics" + name + page,
+            //     3600,
+            //     JSON.stringify(comics)
+            // );
             res.send(comics);
         } catch (e) {
             res.status(500).send(e);
@@ -60,7 +60,7 @@ const getSingleComic = async (req, res) => {
 
     try {
         const comic = await Comics.findById(id);
-        redisClient.set("comic" + id, JSON.stringify(comic));
+        // redisClient.set("comic" + id, JSON.stringify(comic));
         res.status(200).send(comic);
     } catch (err) {
         res.status(500).send(err);
